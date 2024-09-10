@@ -20,9 +20,23 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 			// Called when the user clicks the icon.
 			new Notice('This is a notice!');
 		});
-		const GearRibbon = this.addRibbonIcon('backpack', 'Sample Plugin', (evt: MouseEvent) => {
+		const GearRibbon = this.addRibbonIcon('dice', 'Quick Roll', (evt: MouseEvent) => {
 			// Called when the user clicks the icon.
-			new Notice('This is a notice!');
+
+			let item: number = Math.random() * 10 + Math.random() * 10;
+
+			if (item <= 11)
+			{
+				new Notice('Tier 1 Result!');
+			} else
+			if (item >= 12 && item <= 16)
+			{
+				new Notice('Tier 2 Result!');
+			} else
+			if (item >= 17)
+			{
+				new Notice('Tier 3 Result!');
+			}	
 		});
 		// Per
 		// Perform additional things with the ribbon
@@ -46,7 +60,7 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 			name: 'Sample editor command',
 			editorCallback: (editor: Editor, view: MarkdownView) => {
 				console.log(editor.getSelection());
-				editor.replaceSelection('Sample Editor Command');
+				editor.replaceSelection('INPUT PSEUDO CHARACTER SHEET');
 			}
 		});
 		// This adds a complex command that can check whether the current state of the app allows execution of the command
@@ -73,7 +87,7 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 			VIEW_TYPE_EXAMPLE,
 			(leaf) => new ExampleView(leaf)
 		);
-		this.addRibbonIcon("dice", "Activate view", () => {
+		this.addRibbonIcon("magnifying-glass", "Open Complex Roller", () => {
 			this.activateView();
 		  });
 		// This adds a settings tab so the user can configure various aspects of the plugin
