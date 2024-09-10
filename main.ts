@@ -1,17 +1,16 @@
-import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting, WorkspaceLeaf  } from 'obsidian';
 
+import { iPluginSettings } from "./settings/iPluginSettings"
+import { VIEW_TYPE_EXAMPLE, ExampleView } from 'views/diceRollerView';
 // Remember to rename these classes and interfaces!
 
-interface MyPluginSettings {
-	mySetting: string;
-}
 
-const DEFAULT_SETTINGS: MyPluginSettings = {
+const DEFAULT_SETTINGS: iPluginSettings = {
 	mySetting: 'default'
 }
 
 export default class ForbiddenLandsCharacterSheet extends Plugin {
-	settings: MyPluginSettings;
+	settings: iPluginSettings;
 
 	async onload() {
 		await this.loadSettings();
@@ -70,6 +69,13 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 			}
 		});
 
+		this.registerView(
+			VIEW_TYPE_EXAMPLE,
+			(leaf) => new ExampleView(leaf)
+		);
+		this.addRibbonIcon("dice", "Activate view", () => {
+			this.activateView();
+		  });
 		// This adds a settings tab so the user can configure various aspects of the plugin
 		this.addSettingTab(new SampleSettingTab(this.app, this));
 
@@ -84,8 +90,29 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 	}
 
 	onunload() {
-
 	}
+
+	async activateView() {
+		const { workspace } = this.app;
+	
+		let leaf: WorkspaceLeaf | null = null;
+		const leaves = workspace.getLeavesOfType(VIEW_TYPE_EXAMPLE);
+	
+		if (leaves.length > 0) {
+		  // A leaf with our view already exists, use that
+		  leaf = leaves[0];
+		} else {
+		  // Our view could not be found in the workspace, create a new leaf
+		  // in the right sidebar for it
+		  leaf = workspace.getRightLeaf(false);
+		  if (leaf != null)
+			await leaf.setViewState({ type: VIEW_TYPE_EXAMPLE, active: true });
+	}
+	
+	// "Reveal" the leaf in case it is in a collapsed sidebar
+		if (leaf != null)
+		workspace.revealLeaf(leaf);
+	  }
 
 	async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
