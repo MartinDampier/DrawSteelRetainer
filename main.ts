@@ -87,7 +87,7 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 			VIEW_TYPE_EXAMPLE,
 			(leaf) => new ExampleView(leaf)
 		);
-		this.addRibbonIcon("magnifying-glass", "Open Complex Roller", () => {
+		this.addRibbonIcon("magnifying-glass", "Open Power Roller", () => {
 			this.activateView();
 		  });
 		// This adds a settings tab so the user can configure various aspects of the plugin
