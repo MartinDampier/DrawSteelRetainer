@@ -1,6 +1,7 @@
 import { App, ButtonComponent, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting, WorkspaceLeaf } from 'obsidian';
 import { InitiativeView } from './Views/InitiativeTrackerView';
-import { INITIATIVE_VIEW, TableFormat, TableFlag } from 'lib/Models/Constants';
+import { NegotiationView } from './Views/NegotiationView';
+import { INITIATIVE_VIEW, TableFormat, TableFlag, NEGOTIATION_VIEW } from 'lib/Models/Constants';
 import Creature from 'lib/Models/Creature';
 import {RetainerSettings, DEFAULT_SETTINGS} from 'lib/Settings'
 import { CreatureTypes } from './Models/CreatureTypes';
@@ -15,11 +16,19 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 		this.registerView(
 			INITIATIVE_VIEW,
 			(leaf) => new InitiativeView(leaf, this.creatures, this.settings.playerCharacters)
-		  );
+		);
+		this.registerView(
+			NEGOTIATION_VIEW,
+			(leaf) =>  new NegotiationView(leaf)
+		);
 
-		  this.addRibbonIcon('scroll-text', 'DRAW STEEL! (Initiative Tracker)', () => {
-			this.activateView();
-		  });
+		this.addRibbonIcon('scroll-text', 'DRAW STEEL! (Initiative Tracker)', () => {
+			this.activateInitiativeView();
+		});
+		this.addRibbonIcon('messages-square', 'TALK IT OUT! (Negotiation Tracker)', () => {
+			this.activateNegotiationView();
+		});
+
 
 		// This adds a status bar item to the bottom of the app. Does not work on mobile apps.
 		const statusBarItemEl = this.addStatusBarItem();
@@ -78,7 +87,7 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 		if (creatures.length > 0)
 		{
 			this.creatures = creatures;
-			this.activateView();
+			this.activateInitiativeView();
 			this.creatures = [];
 		}
 	}
@@ -87,7 +96,31 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 
 	}
 
-	async activateView() {
+	async activateNegotiationView() {
+		const { workspace } = this.app;
+	
+		let leaf: WorkspaceLeaf | null = null;
+		const leaves = workspace.getLeavesOfType(NEGOTIATION_VIEW);
+	
+		if (leaves.length > 0) {
+		  // A leaf with our view already exists, use that
+		  leaf = leaves[0];
+
+		} else {
+		  // Our view could not be found in the workspace, create a new leaf
+		  // in the right sidebar for it
+		  
+		  leaf = workspace.getRightLeaf(false);
+		  if (leaf != null)
+			await leaf.setViewState({ type: NEGOTIATION_VIEW, active: true });
+		}
+	
+		// "Reveal" the leaf in case it is in a collapsed sidebar
+		if (leaf != null)
+		workspace.revealLeaf(leaf);
+	}
+
+	async activateInitiativeView() {
 		const { workspace } = this.app;
 	
 		let leaf: WorkspaceLeaf | null = null;
@@ -109,7 +142,7 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 		// "Reveal" the leaf in case it is in a collapsed sidebar
 		if (leaf != null)
 		workspace.revealLeaf(leaf);
-	  }
+	}
 
 	async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
