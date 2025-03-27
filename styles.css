@@ -1,3 +1,33 @@
+table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+datalist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  width: 200px;
+}
+
+option {
+  padding: 0;
+}
+
+input[type="range"] {
+  width: 200px;
+  margin: 0;
+}
+
 .red{
     background-color: var(--color-red);
    }
@@ -17,6 +47,7 @@
     display: table;
     width: 100%;
 }
+
 
 .tableCell {
     display: table-cell;
@@ -107,18 +138,6 @@
 .villains {
     border-color: var(--color-red);
     border-width: 2px;
-}
-table{
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
-    width: 100%;
-}
-
-th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
 }
 
 .name-Cell {
