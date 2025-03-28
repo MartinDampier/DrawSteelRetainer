@@ -19,15 +19,19 @@ export class NegotiationView extends ItemView {
     }
     async onOpen() {
         this.contentEl.empty();
-
-        let patienceLabel = this.contentEl.createEl('label', {text: 'Patience'})
-        this.contentEl.createEl('br');
-        let patience = this.contentEl.createEl('input', {type:'range'})
-        let patienceDataList = this.contentEl.createEl('datalist');
-        let intrigueLabel = this.contentEl.createEl('label', {text: 'Intrique'})
-        this.contentEl.createEl('br');
-        let intrigue = this.contentEl.createEl('input', {type:'range'})
-        let intrigueDataList = this.contentEl.createEl('datalist');
+        this.buildSliderSection();
+    }
+    
+    private buildSliderSection() {
+        let inputGrid = this.contentEl.createDiv({cls: 'Centered'});
+        let patienceLabel = inputGrid.createEl('label', {text: 'Patience'})
+        inputGrid.createEl('br');
+        let patience = inputGrid.createEl('input', {type:'range'})
+        let patienceDataList = inputGrid.createEl('datalist', {cls: 'Centered'});
+        let intrigueLabel = inputGrid.createEl('label', {text: 'Intrique'})
+        inputGrid.createEl('br');
+        let intrigue = inputGrid.createEl('input', {type:'range'})
+        let intrigueDataList = inputGrid.createEl('datalist', {cls: 'Centered'});
 
         patienceDataList.id = 'values';
         patienceDataList.style.width = '80%'
@@ -57,7 +61,7 @@ export class NegotiationView extends ItemView {
         intrigue.step = "1";
         intrigue.style.width = '80%'
     }
-    
+
     async onClose() {
         // Nothing to clean up. FOR NOW
     }
