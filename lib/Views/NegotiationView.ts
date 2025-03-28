@@ -26,7 +26,7 @@ export class NegotiationView extends ItemView {
         let inputGrid = this.contentEl.createDiv({cls: 'Centered'});
         let patienceLabel = inputGrid.createEl('label', {text: 'Patience'})
         inputGrid.createEl('br');
-        let patience = inputGrid.createEl('input', {type:'range'})
+        let patience = inputGrid.createEl('input', {type:'range', cls: 'slider'})
         let patienceDataList = inputGrid.createEl('datalist', {cls: 'Centered'});
         let intrigueLabel = inputGrid.createEl('label', {text: 'Intrique'})
         inputGrid.createEl('br');
@@ -34,7 +34,6 @@ export class NegotiationView extends ItemView {
         let intrigueDataList = inputGrid.createEl('datalist', {cls: 'Centered'});
 
         patienceDataList.id = 'values';
-        patienceDataList.style.width = '80%'
         for (let i = 0; i < 6; i++)
         {
             let option = patienceDataList.createEl('option', {value: i.toString()});
@@ -45,10 +44,8 @@ export class NegotiationView extends ItemView {
         patience.min = "0";
         patience.max = "5";
         patience.step = "1";
-        patience.style.width = '80%'
 
         intrigueDataList.id = 'values';
-        intrigueDataList.style.width = '80%'
         for (let i = 0; i < 6; i++)
         {
             let option = intrigueDataList.createEl('option', {value: i.toString()});
@@ -59,7 +56,6 @@ export class NegotiationView extends ItemView {
         intrigue.min = "0";
         intrigue.max = "5";
         intrigue.step = "1";
-        intrigue.style.width = '80%'
     }
 
     async onClose() {

@@ -16,7 +16,7 @@ datalist {
   justify-content: space-between;
   writing-mode: vertical-lr;
   text-orientation: upright;
-  width: 200px;
+  width: 80%;
 }
 
 option {
@@ -24,9 +24,16 @@ option {
 }
 
 input[type="range"] {
-  width: 200px;
-  margin: 0;
+  width: 80%;
 }
+
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: var(--interactive-accent);
+    width: 10px;
+    height: 10px;
+    margin-top: -5px;
+  }
 
 .red{
     background-color: var(--color-red);
@@ -158,3 +165,4 @@ input[type="range"] {
     height: 18px;
     background-color: transparent;
 }
+
