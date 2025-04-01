@@ -19,7 +19,7 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 		);
 		this.registerView(
 			NEGOTIATION_VIEW,
-			(leaf) =>  new NegotiationView(leaf)
+			(leaf) =>  new NegotiationView(leaf, true)
 		);
 
 		this.addRibbonIcon('scroll-text', 'DRAW STEEL! (Initiative Tracker)', () => {

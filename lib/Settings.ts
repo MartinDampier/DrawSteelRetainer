@@ -1,5 +1,6 @@
 import { Attitude } from "./Models/Attitude";
 import Creature from "./Models/Creature";
+import { Language } from "./Models/Language";
 import { MotivationPitfall } from "./Models/MotivationPitfall";
 
 export interface RetainerSettings {
@@ -7,6 +8,7 @@ export interface RetainerSettings {
     playerCharacters: Creature[];
     attitudes: Attitude[];
     motivationPitfall: MotivationPitfall[];
+    languages: Language[];
 }
 
 export const DEFAULT_SETTINGS: RetainerSettings = {
@@ -122,6 +124,133 @@ export const DEFAULT_SETTINGS: RetainerSettings = {
             MotivationDescription: 'An NPC with the vengeance motivation wants to harm another who has hurt them. Their desire for revenge could be proportional to the harm that was inflicted upon them, or they might wish to pay back their pain with interest. In some cases, a desire for vengeance can be satisfied only by the death of another, but an NPC might wish to pay back their own suffering with embarrassment, career failure, or some other less permanent pain.',
             PitfallDescription: 'An NPC with the vengeance pitfall believes that revenge solves nothing. They might have gained this belief first hand, or they might simply not have the ambition to seek revenge—and they take a dim view of others who do.',
             IsMotivation: true,
+        },
+    ],
+    languages: [
+        {
+            Name: 'Anjali',
+            CommonAncestry: 'Devils, Hobgoblins',
+            Notes: 'Language of contract law',
+        },
+        {
+            Name: 'Axiomatic',
+            CommonAncestry: 'Memonek',
+            Notes: 'Native language of Axiom, and the common language of the timescape by trade',
+        },
+        {
+            Name: 'Caelian',
+            CommonAncestry: 'Orden Denizens',
+            Notes: 'Common tongue of Orden',
+        },
+        {
+            Name: 'Filliaric',
+            CommonAncestry: 'Angulotls',
+            Notes: 'Offshoot of Cylinric',
+        },
+        {
+            Name: 'High Kuric',
+            CommonAncestry: 'Bredbeddles, Giants, Ogres, Trolls',
+            Notes: ' -- ',
+        },
+        {
+            Name: 'Hyrallic',
+            CommonAncestry: 'High Elves',
+            Notes: 'Language of interspecies diplomacy',
+        },
+        {
+            Name: 'Illyvric',
+            CommonAncestry: 'Shadow Elves',
+            Notes: ' -- ',
+        },
+        {
+            Name: 'Kalliak',
+            CommonAncestry: 'Orcs',
+            Notes: 'Offshot of Zaliac',
+        },
+        {
+            Name: 'Kethaic',
+            CommonAncestry: 'Kobolds',
+            Notes: 'Patios of Vastariax and Caelian',
+        },
+        {
+            Name: 'Khelt',
+            CommonAncestry: 'Bugbears, Fey',
+            Notes: 'Offshoot of Kheltivari',
+        },
+        {
+            Name: 'Khoursirian',
+            CommonAncestry: 'Polder, Humans',
+            Notes: 'Distant offshoot of Khamish',
+        },
+        {
+            Name: 'Low Kuric',
+            CommonAncestry: 'Elementals',
+            Notes: ' -- ',
+        },
+        {
+            Name: 'Mindspeech',
+            CommonAncestry: 'Voiceless Talkers',
+            Notes: 'A symbolic language shared among native telepaths',
+        },
+        {
+            Name: 'Proto-Ctholl',
+            CommonAncestry: 'Demons',
+            Notes: 'Incomplete offshoot of Tholl',
+        },
+        {
+            Name: 'Szetch',
+            CommonAncestry: 'Goblins, Radenwights',
+            Notes: ' -- ',
+        },
+        {
+            Name: 'The First Language',
+            CommonAncestry: 'Elder Dragons',
+            Notes: 'Language of magic',
+        },
+        {
+            Name: 'Tholl',
+            CommonAncestry: 'Gnolls',
+            Notes: ' -- ',
+        },
+        {
+            Name: 'Urollialic',
+            CommonAncestry: 'Olothec',
+            Notes: ' -- ',
+        },
+        {
+            Name: 'Variac',
+            CommonAncestry: 'Gnomes, Olothecs, Trolls, Voiceless Talkers',
+            Notes: 'Common languge of the World Below',
+        },
+        {
+            Name: 'Vastariax',
+            CommonAncestry: 'Dragons, Dragon Knights',
+            Notes: ' -- ',
+        },
+        {
+            Name: 'Vhoric',
+            CommonAncestry: 'Hakaan',
+            Notes: 'Offshoot of the Stone Giant dialect of High Kuric',
+        },
+        {
+            Name: 'Voll',
+            CommonAncestry: 'Time Raiders',
+            Notes: ' -- ',
+        },
+        {
+            Name: 'Yllyric',
+            CommonAncestry: 'Wode Elves',
+            Notes: 'Language of druids',
+        },
+        {
+            Name: 'Za’hariax',
+            CommonAncestry: 'Overminds',
+            Notes: ' -- ',
+        },
+        {
+            Name: 'Zaliac',
+            CommonAncestry: 'Dwarves',
+            Notes: 'Language of engineering',
         },
     ],
 }
