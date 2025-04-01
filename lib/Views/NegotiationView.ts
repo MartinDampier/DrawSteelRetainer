@@ -1,8 +1,9 @@
 import { NEGOTIATION_VIEW } from "lib/Models/Constants";
-import { ItemView, WorkspaceLeaf } from "obsidian";
+import { ItemView, TextComponent, WorkspaceLeaf } from "obsidian";
 
 export class NegotiationView extends ItemView {
-    isCreate: boolean
+    isCreate: boolean;
+    wizardEl: HTMLElement;
 
     constructor(leaf: WorkspaceLeaf, isCreate: boolean) {
         super(leaf);
@@ -20,11 +21,37 @@ export class NegotiationView extends ItemView {
         return "messages-square";
     }
     async onOpen() {
-        this.buildTracker();
+        this.buildWizard();
     }
     
     private buildWizard() {
         this.contentEl.empty();
+        this.wizardEl = this.contentEl.createDiv();
+        this.wizardEl.addClass('Centered');
+        this.wizardEl.addClass('fill');
+        this.wizardEl.createEl('label', {text: 'Character Name'});
+        this.wizardEl.createEl('br');
+        new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        this.wizardEl.createEl('br');
+        this.wizardEl.createEl('br');
+        this.wizardEl.createEl('label', {text: 'Languages'})
+        this.wizardEl.createEl('br');
+        new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        this.wizardEl.createEl('br');
+        this.wizardEl.createEl('br');
+        this.wizardEl.createEl('label', {text: 'Motivations'})
+        this.wizardEl.createEl('br');
+        new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        this.wizardEl.createEl('br');
+        this.wizardEl.createEl('br');
+        this.wizardEl.createEl('label', {text: 'Pitfalls'})
+        this.wizardEl.createEl('br');
+        new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        this.wizardEl.createEl('br');
+        this.wizardEl.createEl('br');
+        this.wizardEl.createEl('label', {text: 'Offers'})
+        this.wizardEl.createEl('br');
+        new TextComponent(this.wizardEl).setPlaceholder('John Smith');
     }
 
     private buildTracker() {
@@ -34,11 +61,11 @@ export class NegotiationView extends ItemView {
 
     private buildSliderSection() {
         let inputGrid = this.contentEl.createDiv({cls: 'Centered'});
-        let patienceLabel = inputGrid.createEl('label', {text: 'Patience'})
+        inputGrid.createEl('label', {text: 'Patience'})
         inputGrid.createEl('br');
         let patience = inputGrid.createEl('input', {type:'range', cls: 'slider'})
         let patienceDataList = inputGrid.createEl('datalist', {cls: 'Centered'});
-        let intrigueLabel = inputGrid.createEl('label', {text: 'Intrique'})
+        inputGrid.createEl('label', {text: 'Intrique'})
         inputGrid.createEl('br');
         let intrigue = inputGrid.createEl('input', {type:'range'})
         let intrigueDataList = inputGrid.createEl('datalist', {cls: 'Centered'});
