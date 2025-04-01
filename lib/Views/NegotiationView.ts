@@ -24,11 +24,11 @@ export class NegotiationView extends ItemView {
     
     private buildSliderSection() {
         let inputGrid = this.contentEl.createDiv({cls: 'Centered'});
-        let patienceLabel = inputGrid.createEl('label', {text: 'Patience'})
+        inputGrid.createEl('label', {text: 'Patience'})
         inputGrid.createEl('br');
         let patience = inputGrid.createEl('input', {type:'range', cls: 'slider'})
         let patienceDataList = inputGrid.createEl('datalist', {cls: 'Centered'});
-        let intrigueLabel = inputGrid.createEl('label', {text: 'Intrique'})
+        inputGrid.createEl('label', {text: 'Intrique'})
         inputGrid.createEl('br');
         let intrigue = inputGrid.createEl('input', {type:'range'})
         let intrigueDataList = inputGrid.createEl('datalist', {cls: 'Centered'});

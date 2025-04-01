@@ -39,23 +39,6 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 		this.addSettingTab(new RetainerSettingTab(this.app, this));
 	}
 
-	// addCommands(){
-	// 	this.addCommand({
-	// 		id: "insert-initiative-table",
-	// 		name: "Insert Initiative Table",
-	// 		editorCallback: (editor: Editor) => { 
-	// 			editor.replaceRange(TableFormat, editor.getCursor());
-	// 		}
-	// 	});
-	// 	// this.addCommand({
-	// 	// 	id: 'import-table-to-tracker',
-	// 	// 	name: 'Import Table To Tracker',
-	// 	// 	editorCallback: (editor: Editor) => {
-	// 	// 		this.importSelectionToTracker(editor);
-	// 	// 	}
-	// 	// });
-	// }
-
 	importSelectionToTracker(editor: Editor){
 		if(!(editor.somethingSelected())) {
 			return;
@@ -93,7 +76,6 @@ export default class ForbiddenLandsCharacterSheet extends Plugin {
 	}
 
 	onunload() {
-
 	}
 
 	async activateNegotiationView() {
