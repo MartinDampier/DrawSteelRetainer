@@ -2,9 +2,11 @@ import { NEGOTIATION_VIEW } from "lib/Models/Constants";
 import { ItemView, WorkspaceLeaf } from "obsidian";
 
 export class NegotiationView extends ItemView {
+    isCreate: boolean
 
-    constructor(leaf: WorkspaceLeaf) {
+    constructor(leaf: WorkspaceLeaf, isCreate: boolean) {
         super(leaf);
+        this.isCreate = isCreate;
     }
 
     getViewType() {
@@ -18,17 +20,25 @@ export class NegotiationView extends ItemView {
         return "messages-square";
     }
     async onOpen() {
+        this.buildTracker();
+    }
+    
+    private buildWizard() {
+        this.contentEl.empty();
+    }
+
+    private buildTracker() {
         this.contentEl.empty();
         this.buildSliderSection();
     }
-    
+
     private buildSliderSection() {
         let inputGrid = this.contentEl.createDiv({cls: 'Centered'});
-        inputGrid.createEl('label', {text: 'Patience'})
+        let patienceLabel = inputGrid.createEl('label', {text: 'Patience'})
         inputGrid.createEl('br');
         let patience = inputGrid.createEl('input', {type:'range', cls: 'slider'})
         let patienceDataList = inputGrid.createEl('datalist', {cls: 'Centered'});
-        inputGrid.createEl('label', {text: 'Intrique'})
+        let intrigueLabel = inputGrid.createEl('label', {text: 'Intrique'})
         inputGrid.createEl('br');
         let intrigue = inputGrid.createEl('input', {type:'range'})
         let intrigueDataList = inputGrid.createEl('datalist', {cls: 'Centered'});
