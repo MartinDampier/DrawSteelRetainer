@@ -55,7 +55,6 @@ input[type='range']::-webkit-slider-thumb {
     width: 100%;
 }
 
-
 .tableCell {
     display: table-cell;
 }
@@ -117,6 +116,7 @@ input[type='range']::-webkit-slider-thumb {
     margin-left: 5px;
     margin-right: 1px;
 }
+
 .headerButtonRight {
     margin-left: 1px;
     margin-right: 5px;

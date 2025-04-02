@@ -40,21 +40,45 @@ export class NegotiationView extends ItemView {
         this.wizardEl.createEl('label', {text: 'Languages'})
         this.wizardEl.createEl('br');
         let languageDropdown =  new DropdownComponent(this.wizardEl);
+        for (let i = 0; i < this.settings.languages.length; i++) {
+            let language = this.settings.languages[i].Name;
+            languageDropdown.addOption(language, language);
+        }
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('label', {text: 'Motivations'})
         this.wizardEl.createEl('br');
-        new DropdownComponent(this.wizardEl);
+        let motivationOneDropdown = new DropdownComponent(this.wizardEl);
+        let motivationTwoDropdown = new DropdownComponent(this.wizardEl);
+        motivationOneDropdown.selectEl.addClass('padded-input');
+        motivationTwoDropdown.selectEl.addClass('padded-input');
+        for (let i = 0; i < this.settings.motivationPitfall.length; i++) {
+            let motivation = this.settings.motivationPitfall[i].Name;
+            motivationOneDropdown.addOption(motivation, motivation);
+            motivationTwoDropdown.addOption(motivation, motivation);
+        }
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('label', {text: 'Pitfalls'})
         this.wizardEl.createEl('br');
-        new DropdownComponent(this.wizardEl);
+        let pitfallOneDropdown = new DropdownComponent(this.wizardEl);
+        let pitfallTwoDropdown = new DropdownComponent(this.wizardEl);
+        pitfallOneDropdown.selectEl.addClass('padded-input');
+        pitfallTwoDropdown.selectEl.addClass('padded-input');
+        for (let i = 0; i < this.settings.motivationPitfall.length; i++) {
+            let pitfall = this.settings.motivationPitfall[i].Name;
+            pitfallOneDropdown.addOption(pitfall, pitfall);
+            pitfallTwoDropdown.addOption(pitfall, pitfall);
+        }
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('label', {text: 'Offers'})
         this.wizardEl.createEl('br');
-        new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        new TextComponent(this.wizardEl).setPlaceholder('John Smith').inputEl.addClass('padded-input');
+        new TextComponent(this.wizardEl).setPlaceholder('John Smith').inputEl.addClass('padded-input');
+        new TextComponent(this.wizardEl).setPlaceholder('John Smith').inputEl.addClass('padded-input');
+        new TextComponent(this.wizardEl).setPlaceholder('John Smith').inputEl.addClass('padded-input');
+        new TextComponent(this.wizardEl).setPlaceholder('John Smith').inputEl.addClass('padded-input');
     }
 
     private buildTracker() {
