@@ -1,7 +1,10 @@
+import { App, ButtonComponent, PluginSettingTab, Setting } from "obsidian";
 import { Attitude } from "./Models/Attitude";
 import Creature from "./Models/Creature";
 import { Language } from "./Models/Language";
 import { MotivationPitfall } from "./Models/MotivationPitfall";
+import ForbiddenLandsCharacterSheet from "./main";
+import { CreatureTypes } from "./Models/CreatureTypes";
 
 export interface RetainerSettings {
     mySetting: string;
@@ -253,5 +256,75 @@ export const DEFAULT_SETTINGS: RetainerSettings = {
             Notes: 'Language of engineering',
         },
     ],
+}
+
+export class RetainerSettingTab extends PluginSettingTab {
+    plugin: ForbiddenLandsCharacterSheet;
+
+    constructor(app: App, plugin: ForbiddenLandsCharacterSheet) {
+        super(app, plugin);
+        this.plugin = plugin;
+    }
+
+    display(): void {
+        const {containerEl} = this;
+
+        containerEl.empty();
+
+        containerEl.createEl('h1', {text: 'Draw Steel Companion Settings'});
+
+        let div = containerEl.createDiv({cls: "rightAlign bottomSpace"});
+        new ButtonComponent(div)
+            .setButtonText("Add Player Character")
+            .setClass("rightAlign")
+            .onClick( () => {
+                this.buildCharacterInput(containerEl)
+            } );
+        this.plugin.settings.playerCharacters.forEach((x) => this.buildCharacterInput(containerEl, x))
+    }
+
+    buildCharacterInput(containerEl: HTMLElement, character?: Creature){
+        let player = character ?? new Creature();
+        player.Type = CreatureTypes.Hero;
+        if (character == undefined)
+        {
+            this.plugin.settings.playerCharacters.push(player);
+        }
+
+        let staminaInput = player.MaxStamina == undefined ? '' : player.MaxStamina.toString();
+        let setting = new Setting(containerEl)
+        .setName('Player Character')
+        .setDesc('Set the PC\'s Name and Stamina')
+        .addText(text => text
+            .setPlaceholder('Name')
+            .setValue(player.Name)
+            .onChange(async (value) => {
+                player.Name = value;
+                await this.plugin.saveSettings();
+            }))
+        .addText(text => text
+            .setPlaceholder('Stamina')
+            .setValue(staminaInput)
+            .onChange(async (value) => {
+                if (value != null && value != "")
+                {
+                    player.MaxStamina = +value;
+                }
+                await this.plugin.saveSettings();
+            }))
+        .addButton((button: ButtonComponent): ButtonComponent => {
+            let b = button.setButtonText("Delete").onClick(async () => {
+                this.plugin.settings.playerCharacters.remove(player);
+                setting.controlEl.remove();
+                setting.nameEl.remove();
+                setting.descEl.remove();
+                setting.infoEl.remove();
+                setting.settingEl.remove();
+                await this.plugin.saveSettings();
+            });
+            return b;
+        });
+                    
+    }
 }
 

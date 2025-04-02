@@ -1,12 +1,15 @@
 import { NEGOTIATION_VIEW } from "lib/Models/Constants";
-import { ItemView, TextComponent, WorkspaceLeaf } from "obsidian";
+import { RetainerSettings } from "lib/Settings";
+import { DropdownComponent, ItemView, TextComponent, WorkspaceLeaf } from "obsidian";
 
 export class NegotiationView extends ItemView {
     isCreate: boolean;
     wizardEl: HTMLElement;
+    settings: RetainerSettings;
 
-    constructor(leaf: WorkspaceLeaf, isCreate: boolean) {
+    constructor(leaf: WorkspaceLeaf, settings: RetainerSettings, isCreate: boolean) {
         super(leaf);
+        this.settings = settings;
         this.isCreate = isCreate;
     }
 
@@ -36,17 +39,17 @@ export class NegotiationView extends ItemView {
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('label', {text: 'Languages'})
         this.wizardEl.createEl('br');
-        new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        let languageDropdown =  new DropdownComponent(this.wizardEl);
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('label', {text: 'Motivations'})
         this.wizardEl.createEl('br');
-        new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        new DropdownComponent(this.wizardEl);
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('label', {text: 'Pitfalls'})
         this.wizardEl.createEl('br');
-        new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        new DropdownComponent(this.wizardEl);
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('label', {text: 'Offers'})
