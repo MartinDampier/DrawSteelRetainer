@@ -74,11 +74,21 @@ export class NegotiationView extends ItemView {
         this.wizardEl.createEl('br');
         this.wizardEl.createEl('label', {text: 'Offers'})
         this.wizardEl.createEl('br');
-        new TextComponent(this.wizardEl).setPlaceholder('John Smith').inputEl.addClass('padded-input');
-        new TextComponent(this.wizardEl).setPlaceholder('John Smith').inputEl.addClass('padded-input');
-        new TextComponent(this.wizardEl).setPlaceholder('John Smith').inputEl.addClass('padded-input');
-        new TextComponent(this.wizardEl).setPlaceholder('John Smith').inputEl.addClass('padded-input');
-        new TextComponent(this.wizardEl).setPlaceholder('John Smith').inputEl.addClass('padded-input');
+        let x = new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        x.inputEl.addClass('padded-input');
+        x.inputEl.addClass('offerStyle');
+        x = new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        x.inputEl.addClass('padded-input');
+        x.inputEl.addClass('offerStyle');
+        x = new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        x.inputEl.addClass('padded-input');
+        x.inputEl.addClass('offerStyle');
+        x = new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        x.inputEl.addClass('padded-input');
+        x.inputEl.addClass('offerStyle');
+        x = new TextComponent(this.wizardEl).setPlaceholder('John Smith');
+        x.inputEl.addClass('padded-input');
+        x.inputEl.addClass('offerStyle');
     }
 
     private buildTracker() {

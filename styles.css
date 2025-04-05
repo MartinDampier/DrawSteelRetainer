@@ -92,6 +92,11 @@ input[type='range']::-webkit-slider-thumb {
     width: 90%;
 }
 
+.offerStyle {
+    width: 100%;
+    height: 60px;
+}
+
 .padded-input {
     margin-left: 5px;
     margin-bottom: 5px;
